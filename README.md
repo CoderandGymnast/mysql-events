@@ -14,6 +14,22 @@ Check [@kuroski](https://github.com/kuroski)'s [mysql-events-ui](https://github.
 npm install @rodrigogs/mysql-events
 ```
 
+## MySQL configuration: 
+1. Enabling **Binary Logging**. Use **SHOW BINARY LOGS** query to determine whether **Binlog** has been enabled or not.
+> From MySQL 8.0, binary logging is enabled by default. [Reference](https://dev.mysql.com/doc/refman/8.0/en/replication-options-binary-log.html#:~:text=From%20MySQL%208.0%2C%20binary%20logging,logging%20is%20disabled%20by%20default.)
+
+2. Run the following query: 
+```sql
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+FLUSH PRIVILEGES;
+```
+
+## Troubleshooting: 
+### Authentication protocol
+* **Message**: MySQL 8.0 - Client does not support authentication protocol requested by server; consider upgrading MySQL client.
+* **Solution**: Perform the second step in **MySQL configuration** section. 
+
+
 ## Quick Start
 ```javascript
 const mysql = require('mysql');
